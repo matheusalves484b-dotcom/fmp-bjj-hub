@@ -12,6 +12,29 @@ export type Profile = {
   avatar_url: string | null;
 };
 
+const PROFILE_RETRY_DELAYS = [0, 250, 500, 1000, 1500, 2500];
+
+export async function loadProfile(userId: string): Promise<Profile | null> {
+  for (let attempt = 0; attempt < PROFILE_RETRY_DELAYS.length; attempt += 1) {
+    const delay = PROFILE_RETRY_DELAYS[attempt];
+    if (delay) await new Promise((resolve) => setTimeout(resolve, delay));
+
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("id, full_name, role, phone, avatar_url")
+      .eq("id", userId)
+      .maybeSingle();
+
+    if (data) return data as Profile;
+
+    if (error && error.code !== "PGRST116") {
+      console.warn("Não foi possível carregar o perfil do usuário:", error.message);
+    }
+  }
+
+  return null;
+}
+
 export function useAuth() {
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -20,31 +43,35 @@ export function useAuth() {
   useEffect(() => {
     let active = true;
 
-    const loadProfile = async (nextSession: Session | null) => {
+    const syncSession = async (nextSession: Session | null) => {
+      if (!active) return;
+
+      setSession(nextSession);
+
       if (!nextSession?.user) {
-        if (active) setProfile(null);
+        setProfile(null);
+        setLoading(false);
         return;
       }
-      const { data } = await supabase
-        .from("profiles")
-        .select("id, full_name, role, phone, avatar_url")
-        .eq("id", nextSession.user.id)
-        .single();
-      if (active) setProfile(data as Profile | null);
+
+      setLoading(true);
+      const nextProfile = await loadProfile(nextSession.user.id);
+      if (!active) return;
+
+      setProfile(nextProfile);
+      setLoading(false);
     };
 
-    supabase.auth.getSession().then(async ({ data }) => {
-      if (!active) return;
-      setSession(data.session);
-      await loadProfile(data.session);
-      if (active) setLoading(false);
+    supabase.auth.getSession().then(({ data }) => {
+      void syncSession(data.session);
     });
 
-    const { data: listener } = supabase.auth.onAuthStateChange(async (_event, nextSession) => {
-      if (!active) return;
-      setSession(nextSession);
-      await loadProfile(nextSession);
-      if (active) setLoading(false);
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      // Supabase recommends keeping this callback synchronous. Defer the database
+      // query so it does not compete with the Auth client's internal lock.
+      setTimeout(() => {
+        void syncSession(nextSession);
+      }, 0);
     });
 
     return () => {
