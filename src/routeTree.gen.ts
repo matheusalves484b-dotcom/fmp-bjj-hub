@@ -10,6 +10,7 @@ import { Route as TurmasRouteImport } from './routes/turmas'
 import { Route as FrequenciaRouteImport } from './routes/frequencia'
 import { Route as MinhasAulasRouteImport } from './routes/minhas-aulas'
 import { Route as FinanceiroRouteImport } from './routes/financeiro'
+import { Route as GraduacoesRouteImport } from './routes/graduacoes'
 
 const IndexRoute = IndexRouteImport.update({ id: '/', path: '/', getParentRoute: () => rootRouteImport } as any)
 const LoginRoute = LoginRouteImport.update({ id: '/login', path: '/login', getParentRoute: () => rootRouteImport } as any)
@@ -18,12 +19,13 @@ const TurmasRoute = TurmasRouteImport.update({ id: '/turmas', path: '/turmas', g
 const FrequenciaRoute = FrequenciaRouteImport.update({ id: '/frequencia', path: '/frequencia', getParentRoute: () => rootRouteImport } as any)
 const MinhasAulasRoute = MinhasAulasRouteImport.update({ id: '/minhas-aulas', path: '/minhas-aulas', getParentRoute: () => rootRouteImport } as any)
 const FinanceiroRoute = FinanceiroRouteImport.update({ id: '/financeiro', path: '/financeiro', getParentRoute: () => rootRouteImport } as any)
+const GraduacoesRoute = GraduacoesRouteImport.update({ id: '/graduacoes', path: '/graduacoes', getParentRoute: () => rootRouteImport } as any)
 
-export interface FileRoutesByFullPath { '/': typeof IndexRoute; '/login': typeof LoginRoute; '/alunos': typeof AlunosRoute; '/turmas': typeof TurmasRoute; '/frequencia': typeof FrequenciaRoute; '/minhas-aulas': typeof MinhasAulasRoute; '/financeiro': typeof FinanceiroRoute }
-export interface FileRoutesByTo { '/': typeof IndexRoute; '/login': typeof LoginRoute; '/alunos': typeof AlunosRoute; '/turmas': typeof TurmasRoute; '/frequencia': typeof FrequenciaRoute; '/minhas-aulas': typeof MinhasAulasRoute; '/financeiro': typeof FinanceiroRoute }
-export interface FileRoutesById { __root__: typeof rootRouteImport; '/': typeof IndexRoute; '/login': typeof LoginRoute; '/alunos': typeof AlunosRoute; '/turmas': typeof TurmasRoute; '/frequencia': typeof FrequenciaRoute; '/minhas-aulas': typeof MinhasAulasRoute; '/financeiro': typeof FinanceiroRoute }
-export interface FileRouteTypes { fileRoutesByFullPath: FileRoutesByFullPath; fullPaths: '/' | '/login' | '/alunos' | '/turmas' | '/frequencia' | '/minhas-aulas' | '/financeiro'; fileRoutesByTo: FileRoutesByTo; id: '__root__' | '/' | '/login' | '/alunos' | '/turmas' | '/frequencia' | '/minhas-aulas' | '/financeiro'; fileRoutesById: FileRoutesById }
-export interface RootRouteChildren { IndexRoute: typeof IndexRoute; LoginRoute: typeof LoginRoute; AlunosRoute: typeof AlunosRoute; TurmasRoute: typeof TurmasRoute; FrequenciaRoute: typeof FrequenciaRoute; MinhasAulasRoute: typeof MinhasAulasRoute; FinanceiroRoute: typeof FinanceiroRoute }
+export interface FileRoutesByFullPath { '/': typeof IndexRoute; '/login': typeof LoginRoute; '/alunos': typeof AlunosRoute; '/turmas': typeof TurmasRoute; '/frequencia': typeof FrequenciaRoute; '/minhas-aulas': typeof MinhasAulasRoute; '/financeiro': typeof FinanceiroRoute; '/graduacoes': typeof GraduacoesRoute }
+export interface FileRoutesByTo { '/': typeof IndexRoute; '/login': typeof LoginRoute; '/alunos': typeof AlunosRoute; '/turmas': typeof TurmasRoute; '/frequencia': typeof FrequenciaRoute; '/minhas-aulas': typeof MinhasAulasRoute; '/financeiro': typeof FinanceiroRoute; '/graduacoes': typeof GraduacoesRoute }
+export interface FileRoutesById { __root__: typeof rootRouteImport; '/': typeof IndexRoute; '/login': typeof LoginRoute; '/alunos': typeof AlunosRoute; '/turmas': typeof TurmasRoute; '/frequencia': typeof FrequenciaRoute; '/minhas-aulas': typeof MinhasAulasRoute; '/financeiro': typeof FinanceiroRoute; '/graduacoes': typeof GraduacoesRoute }
+export interface FileRouteTypes { fileRoutesByFullPath: FileRoutesByFullPath; fullPaths: '/' | '/login' | '/alunos' | '/turmas' | '/frequencia' | '/minhas-aulas' | '/financeiro' | '/graduacoes'; fileRoutesByTo: FileRoutesByTo; id: '__root__' | '/' | '/login' | '/alunos' | '/turmas' | '/frequencia' | '/minhas-aulas' | '/financeiro' | '/graduacoes'; fileRoutesById: FileRoutesById }
+export interface RootRouteChildren { IndexRoute: typeof IndexRoute; LoginRoute: typeof LoginRoute; AlunosRoute: typeof AlunosRoute; TurmasRoute: typeof TurmasRoute; FrequenciaRoute: typeof FrequenciaRoute; MinhasAulasRoute: typeof MinhasAulasRoute; FinanceiroRoute: typeof FinanceiroRoute; GraduacoesRoute: typeof GraduacoesRoute }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
@@ -34,10 +36,11 @@ declare module '@tanstack/react-router' {
     '/frequencia': { id: '/frequencia'; path: '/frequencia'; fullPath: '/frequencia'; preLoaderRoute: typeof FrequenciaRouteImport; parentRoute: typeof rootRouteImport }
     '/minhas-aulas': { id: '/minhas-aulas'; path: '/minhas-aulas'; fullPath: '/minhas-aulas'; preLoaderRoute: typeof MinhasAulasRouteImport; parentRoute: typeof rootRouteImport }
     '/financeiro': { id: '/financeiro'; path: '/financeiro'; fullPath: '/financeiro'; preLoaderRoute: typeof FinanceiroRouteImport; parentRoute: typeof rootRouteImport }
+    '/graduacoes': { id: '/graduacoes'; path: '/graduacoes'; fullPath: '/graduacoes'; preLoaderRoute: typeof GraduacoesRouteImport; parentRoute: typeof rootRouteImport }
   }
 }
 
-const rootRouteChildren: RootRouteChildren = { IndexRoute, LoginRoute, AlunosRoute, TurmasRoute, FrequenciaRoute, MinhasAulasRoute, FinanceiroRoute }
+const rootRouteChildren: RootRouteChildren = { IndexRoute, LoginRoute, AlunosRoute, TurmasRoute, FrequenciaRoute, MinhasAulasRoute, FinanceiroRoute, GraduacoesRoute }
 export const routeTree = rootRouteImport._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>()
 
 import type { getRouter } from './router.tsx'
