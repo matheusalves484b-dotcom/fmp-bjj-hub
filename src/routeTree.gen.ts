@@ -1,7 +1,5 @@
 /* eslint-disable */
-
 // @ts-nocheck
-
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginRouteImport } from './routes/login'
@@ -11,7 +9,8 @@ import { Route as FrequenciaRouteImport } from './routes/frequencia'
 import { Route as MinhasAulasRouteImport } from './routes/minhas-aulas'
 import { Route as FinanceiroRouteImport } from './routes/financeiro'
 import { Route as GraduacoesRouteImport } from './routes/graduacoes'
-
+import { Route as RetencaoRouteImport } from './routes/retencao'
+import { Route as TvRouteImport } from './routes/tv'
 const IndexRoute = IndexRouteImport.update({ id: '/', path: '/', getParentRoute: () => rootRouteImport } as any)
 const LoginRoute = LoginRouteImport.update({ id: '/login', path: '/login', getParentRoute: () => rootRouteImport } as any)
 const AlunosRoute = AlunosRouteImport.update({ id: '/alunos', path: '/alunos', getParentRoute: () => rootRouteImport } as any)
@@ -20,29 +19,27 @@ const FrequenciaRoute = FrequenciaRouteImport.update({ id: '/frequencia', path: 
 const MinhasAulasRoute = MinhasAulasRouteImport.update({ id: '/minhas-aulas', path: '/minhas-aulas', getParentRoute: () => rootRouteImport } as any)
 const FinanceiroRoute = FinanceiroRouteImport.update({ id: '/financeiro', path: '/financeiro', getParentRoute: () => rootRouteImport } as any)
 const GraduacoesRoute = GraduacoesRouteImport.update({ id: '/graduacoes', path: '/graduacoes', getParentRoute: () => rootRouteImport } as any)
-
-export interface FileRoutesByFullPath { '/': typeof IndexRoute; '/login': typeof LoginRoute; '/alunos': typeof AlunosRoute; '/turmas': typeof TurmasRoute; '/frequencia': typeof FrequenciaRoute; '/minhas-aulas': typeof MinhasAulasRoute; '/financeiro': typeof FinanceiroRoute; '/graduacoes': typeof GraduacoesRoute }
-export interface FileRoutesByTo { '/': typeof IndexRoute; '/login': typeof LoginRoute; '/alunos': typeof AlunosRoute; '/turmas': typeof TurmasRoute; '/frequencia': typeof FrequenciaRoute; '/minhas-aulas': typeof MinhasAulasRoute; '/financeiro': typeof FinanceiroRoute; '/graduacoes': typeof GraduacoesRoute }
-export interface FileRoutesById { __root__: typeof rootRouteImport; '/': typeof IndexRoute; '/login': typeof LoginRoute; '/alunos': typeof AlunosRoute; '/turmas': typeof TurmasRoute; '/frequencia': typeof FrequenciaRoute; '/minhas-aulas': typeof MinhasAulasRoute; '/financeiro': typeof FinanceiroRoute; '/graduacoes': typeof GraduacoesRoute }
-export interface FileRouteTypes { fileRoutesByFullPath: FileRoutesByFullPath; fullPaths: '/' | '/login' | '/alunos' | '/turmas' | '/frequencia' | '/minhas-aulas' | '/financeiro' | '/graduacoes'; fileRoutesByTo: FileRoutesByTo; id: '__root__' | '/' | '/login' | '/alunos' | '/turmas' | '/frequencia' | '/minhas-aulas' | '/financeiro' | '/graduacoes'; fileRoutesById: FileRoutesById }
-export interface RootRouteChildren { IndexRoute: typeof IndexRoute; LoginRoute: typeof LoginRoute; AlunosRoute: typeof AlunosRoute; TurmasRoute: typeof TurmasRoute; FrequenciaRoute: typeof FrequenciaRoute; MinhasAulasRoute: typeof MinhasAulasRoute; FinanceiroRoute: typeof FinanceiroRoute; GraduacoesRoute: typeof GraduacoesRoute }
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': { id: '/'; path: '/'; fullPath: '/'; preLoaderRoute: typeof IndexRouteImport; parentRoute: typeof rootRouteImport }
-    '/login': { id: '/login'; path: '/login'; fullPath: '/login'; preLoaderRoute: typeof LoginRouteImport; parentRoute: typeof rootRouteImport }
-    '/alunos': { id: '/alunos'; path: '/alunos'; fullPath: '/alunos'; preLoaderRoute: typeof AlunosRouteImport; parentRoute: typeof rootRouteImport }
-    '/turmas': { id: '/turmas'; path: '/turmas'; fullPath: '/turmas'; preLoaderRoute: typeof TurmasRouteImport; parentRoute: typeof rootRouteImport }
-    '/frequencia': { id: '/frequencia'; path: '/frequencia'; fullPath: '/frequencia'; preLoaderRoute: typeof FrequenciaRouteImport; parentRoute: typeof rootRouteImport }
-    '/minhas-aulas': { id: '/minhas-aulas'; path: '/minhas-aulas'; fullPath: '/minhas-aulas'; preLoaderRoute: typeof MinhasAulasRouteImport; parentRoute: typeof rootRouteImport }
-    '/financeiro': { id: '/financeiro'; path: '/financeiro'; fullPath: '/financeiro'; preLoaderRoute: typeof FinanceiroRouteImport; parentRoute: typeof rootRouteImport }
-    '/graduacoes': { id: '/graduacoes'; path: '/graduacoes'; fullPath: '/graduacoes'; preLoaderRoute: typeof GraduacoesRouteImport; parentRoute: typeof rootRouteImport }
-  }
-}
-
-const rootRouteChildren: RootRouteChildren = { IndexRoute, LoginRoute, AlunosRoute, TurmasRoute, FrequenciaRoute, MinhasAulasRoute, FinanceiroRoute, GraduacoesRoute }
+const RetencaoRoute = RetencaoRouteImport.update({ id: '/retencao', path: '/retencao', getParentRoute: () => rootRouteImport } as any)
+const TvRoute = TvRouteImport.update({ id: '/tv', path: '/tv', getParentRoute: () => rootRouteImport } as any)
+export interface FileRoutesByFullPath { '/': typeof IndexRoute; '/login': typeof LoginRoute; '/alunos': typeof AlunosRoute; '/turmas': typeof TurmasRoute; '/frequencia': typeof FrequenciaRoute; '/minhas-aulas': typeof MinhasAulasRoute; '/financeiro': typeof FinanceiroRoute; '/graduacoes': typeof GraduacoesRoute; '/retencao': typeof RetencaoRoute; '/tv': typeof TvRoute }
+export interface FileRoutesByTo { '/': typeof IndexRoute; '/login': typeof LoginRoute; '/alunos': typeof AlunosRoute; '/turmas': typeof TurmasRoute; '/frequencia': typeof FrequenciaRoute; '/minhas-aulas': typeof MinhasAulasRoute; '/financeiro': typeof FinanceiroRoute; '/graduacoes': typeof GraduacoesRoute; '/retencao': typeof RetencaoRoute; '/tv': typeof TvRoute }
+export interface FileRoutesById { __root__: typeof rootRouteImport; '/': typeof IndexRoute; '/login': typeof LoginRoute; '/alunos': typeof AlunosRoute; '/turmas': typeof TurmasRoute; '/frequencia': typeof FrequenciaRoute; '/minhas-aulas': typeof MinhasAulasRoute; '/financeiro': typeof FinanceiroRoute; '/graduacoes': typeof GraduacoesRoute; '/retencao': typeof RetencaoRoute; '/tv': typeof TvRoute }
+export interface FileRouteTypes { fileRoutesByFullPath: FileRoutesByFullPath; fullPaths: '/' | '/login' | '/alunos' | '/turmas' | '/frequencia' | '/minhas-aulas' | '/financeiro' | '/graduacoes' | '/retencao' | '/tv'; fileRoutesByTo: FileRoutesByTo; id: '__root__' | '/' | '/login' | '/alunos' | '/turmas' | '/frequencia' | '/minhas-aulas' | '/financeiro' | '/graduacoes' | '/retencao' | '/tv'; fileRoutesById: FileRoutesById }
+export interface RootRouteChildren { IndexRoute: typeof IndexRoute; LoginRoute: typeof LoginRoute; AlunosRoute: typeof AlunosRoute; TurmasRoute: typeof TurmasRoute; FrequenciaRoute: typeof FrequenciaRoute; MinhasAulasRoute: typeof MinhasAulasRoute; FinanceiroRoute: typeof FinanceiroRoute; GraduacoesRoute: typeof GraduacoesRoute; RetencaoRoute: typeof RetencaoRoute; TvRoute: typeof TvRoute }
+declare module '@tanstack/react-router' { interface FileRoutesByPath {
+'/': { id: '/'; path: '/'; fullPath: '/'; preLoaderRoute: typeof IndexRouteImport; parentRoute: typeof rootRouteImport }
+'/login': { id: '/login'; path: '/login'; fullPath: '/login'; preLoaderRoute: typeof LoginRouteImport; parentRoute: typeof rootRouteImport }
+'/alunos': { id: '/alunos'; path: '/alunos'; fullPath: '/alunos'; preLoaderRoute: typeof AlunosRouteImport; parentRoute: typeof rootRouteImport }
+'/turmas': { id: '/turmas'; path: '/turmas'; fullPath: '/turmas'; preLoaderRoute: typeof TurmasRouteImport; parentRoute: typeof rootRouteImport }
+'/frequencia': { id: '/frequencia'; path: '/frequencia'; fullPath: '/frequencia'; preLoaderRoute: typeof FrequenciaRouteImport; parentRoute: typeof rootRouteImport }
+'/minhas-aulas': { id: '/minhas-aulas'; path: '/minhas-aulas'; fullPath: '/minhas-aulas'; preLoaderRoute: typeof MinhasAulasRouteImport; parentRoute: typeof rootRouteImport }
+'/financeiro': { id: '/financeiro'; path: '/financeiro'; fullPath: '/financeiro'; preLoaderRoute: typeof FinanceiroRouteImport; parentRoute: typeof rootRouteImport }
+'/graduacoes': { id: '/graduacoes'; path: '/graduacoes'; fullPath: '/graduacoes'; preLoaderRoute: typeof GraduacoesRouteImport; parentRoute: typeof rootRouteImport }
+'/retencao': { id: '/retencao'; path: '/retencao'; fullPath: '/retencao'; preLoaderRoute: typeof RetencaoRouteImport; parentRoute: typeof rootRouteImport }
+'/tv': { id: '/tv'; path: '/tv'; fullPath: '/tv'; preLoaderRoute: typeof TvRouteImport; parentRoute: typeof rootRouteImport }
+} }
+const rootRouteChildren: RootRouteChildren = { IndexRoute, LoginRoute, AlunosRoute, TurmasRoute, FrequenciaRoute, MinhasAulasRoute, FinanceiroRoute, GraduacoesRoute, RetencaoRoute, TvRoute }
 export const routeTree = rootRouteImport._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>()
-
 import type { getRouter } from './router.tsx'
 import type { startInstance } from './start.ts'
 declare module '@tanstack/react-start' { interface Register { ssr: true; router: Awaited<ReturnType<typeof getRouter>>; config: Awaited<ReturnType<typeof startInstance.getOptions>> } }
